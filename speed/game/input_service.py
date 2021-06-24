@@ -21,26 +21,29 @@ class InputService:
             self (InputService): An instance of InputService.
         """
         self._screen = screen
-        self._directions = {}
-        self._directions[119] = Point(0, -1) # UP
-        self._directions[97] = Point(-1, 0) # DOWN
-        self._directions[100] = Point(1, 0) # RIGHT
-        self._directions[115] = Point(0, 1) # LEFT
-        self._current = self._directions[100]
         
-    def get_direction(self):
-        """Gets the selected direction. If one hasn't been selected the last 
-        one is returned.
-
-        Args:
-            self (InputService): An instance of InputService.
-
-        Returns:
-            Point: The selected direction.
-        """
+    def get_key(self):
         event = self._screen.get_key()
         if not event is None:
-            if event == 27:
-                sys.exit()
-            self._current = self._directions.get(event, self._current)
-        return self._current
+            return event
+        return -1
+
+    def get_backspace(self):
+        event = self._screen.get_key()
+        if not event is None:
+            return event == 8
+        return False
+
+    def get_submit(self):
+        event = self._screen.get_key()
+        if not event is None:
+            return event == 13
+        return False
+
+
+    def get_esc(self):
+        event = self._screen.get_key()
+        if not event is None:
+            return event == 27
+        return False
+    
