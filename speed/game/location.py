@@ -32,7 +32,7 @@ class Location:
         """
         x = self._x + other.get_x()
         y = self._y + other.get_y()
-        return Point(x, y)
+        return Location(x, y)
 
     def equals(self, other):
         """Whether or not this Point is equal to the given one.
@@ -79,4 +79,4 @@ class Location:
         """
         x = self._x * -1
         y = self._y * -1
-        return Point(x, y)
+        return Location(x, y)
