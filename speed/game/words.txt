@@ -3641,8 +3641,6 @@ fruits
 fs
 ft
 ftp
-fu
-fucked
 fuel
 fuji
 fujitsu
