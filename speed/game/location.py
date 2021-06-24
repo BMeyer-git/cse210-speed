@@ -1,4 +1,4 @@
-class Point:
+class Location:
     """Represents distance from an origin (0, 0).
 
     Stereotype:
