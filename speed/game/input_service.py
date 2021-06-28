@@ -10,9 +10,9 @@ def _thread_runtime(input):
             if not event is None:
                 
                 if event == 8:
-                    pass # Backspace logic
+                    input._backspace_buffer += 0
                 elif event == 13:
-                    pass # Enter logic
+                    input._submit = True
                 elif event == 27:
                     # Escape logic
                     input._esc = True
@@ -44,6 +44,7 @@ class InputService:
         self._key_buffer = ""
         self._backspace_buffer = 0
         self._esc = False
+        self._submit = False
         self._screen = screen
         self._thread = threading.Thread(target=_thread_runtime, args=(self, ))
         self._thread.start()
@@ -55,16 +56,14 @@ class InputService:
         return keys
 
     def get_backspace(self):
-        event = self._screen.get_key()
-        if not event is None:
-            return event == 8
-        return False
+        backspaces = self._backspace_buffer
+        self._backspace_buffer = 0
+        return backspaces
 
     def get_submit(self):
-        event = self._screen.get_key()
-        if not event is None:
-            return event == 13
-        return False
+        submit = self._submit
+        self._submit = False
+        return submit
 
 
     def get_esc(self):
